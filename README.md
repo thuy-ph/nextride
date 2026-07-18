@@ -26,7 +26,8 @@ The Pages build has no server-side API secret or shared cache. Before a commerci
 - Live queue/status fetch through `/api/parks/movieworld/live` locally, or the public feed directly on GitHub Pages.
 - Family-aware recommendation through `/api/recommendations` locally, or the same route engine in the static Pages build.
 - “Mark as done” records progress locally and recalculates the next ride.
-- The recommended ride opens one-tap Google Maps walking directions when location data is available.
+- Tapping the recommended ride opens a high-contrast in-park map without leaving NextRide.
+- The route starts at the park entrance or the last ride marked done, then follows a curated pedestrian graph.
 - A distilled one-screen mobile interface with wait time, walking time and one primary action.
 - Installable PWA with offline shell caching.
 
@@ -35,6 +36,10 @@ The Pages build has no server-side API secret or shared cache. Before a commerci
 `server.mjs` contains a normalized `PARKS` registry and a `ThemeParksWikiAdapter`. Add an entry with the park entity ID plus attraction metadata (suitability, duration and optional priority). The route engine will then use the same API endpoint and recommendation path.
 
 The current public feed is a prototype integration, not an official Village Roadshow partnership.
+
+## Park map data
+
+The Movie World route view is an original NextRide schematic based on OpenStreetMap pedestrian data and curated ride anchors. It does not copy or embed the operator's park-map artwork. Routes are approximate, carry visible OpenStreetMap attribution, and always tell guests to follow official signs and staff directions.
 
 ## Safety
 

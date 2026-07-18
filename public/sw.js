@@ -1,4 +1,4 @@
-const CACHE_NAME = "nextride-shell-v3";
+const CACHE_NAME = "nextride-shell-v8";
 const APP_SHELL = [
   "./",
   "index.html",
@@ -8,7 +8,7 @@ const APP_SHELL = [
   "icon.svg",
   "shared/parks.js",
   "shared/normalise.js",
-  "shared/directions.js",
+  "shared/park-map.js",
   "shared/optimizer.js",
   "shared/browser-data.js"
 ].map((asset) => new URL(asset, self.registration.scope).toString());

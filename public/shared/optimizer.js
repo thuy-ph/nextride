@@ -1,4 +1,5 @@
 import { PARKS } from "./parks.js";
+import { getParkWalkingMinutes } from "./park-map.js";
 
 const EARTH_RADIUS_METRES = 6_371_000;
 const WALKING_METRES_PER_MINUTE = 70;
@@ -37,8 +38,9 @@ function eligibilityFor(attraction, party) {
   return { state: "not-eligible", label: `needs ${attraction.minHeightCm} cm` };
 }
 
-function scoreRide(attraction, { party, currentLocation, mustDo = [] }) {
-  const walk = walkMinutes(currentLocation, attraction.location);
+function scoreRide(attraction, { parkId, party, currentLocation, mustDo = [] }) {
+  const walk = getParkWalkingMinutes({ parkId, from: currentLocation, to: attraction })
+    ?? walkMinutes(currentLocation, attraction.location);
   const wait = attraction.waitTime ?? 50;
   const eligibility = eligibilityFor(attraction, party);
   const totalMinutes = walk + wait + attraction.durationMinutes;
@@ -110,7 +112,7 @@ export function createRecommendation({ snapshot, party: rawParty, completedIds =
   const excluded = new Set([...completedIds, ...rejectedIds]);
   const scored = snapshot.attractions
     .filter((ride) => ride.status === "OPERATING" && Number.isFinite(ride.waitTime) && !excluded.has(ride.id))
-    .map((ride) => scoreRide(ride, { party, currentLocation: activeLocation, mustDo }))
+    .map((ride) => scoreRide(ride, { parkId: snapshot.park.id, party, currentLocation: activeLocation, mustDo }))
     .filter((ride) => ride.eligibility.state !== "not-eligible")
     .sort((a, b) => b.score - a.score);
 
