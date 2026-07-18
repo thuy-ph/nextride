@@ -1,0 +1,14 @@
+{
+  "name": "NextRide",
+  "short_name": "NextRide",
+  "description": "Your smartest next move at the park.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#10162B",
+  "theme_color": "#10162B",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

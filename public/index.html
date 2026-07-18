@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#10162B" />
+    <meta name="description" content="NextRide finds the smartest next move for your family at the park." />
+    <link rel="stylesheet" href="./styles.css?v=3" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icon.svg" />
+    <title>NextRide — your best move in the park</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <a class="brand" href="./" aria-label="NextRide home">NextRide<span class="brand-dot">.</span></a>
+        <div class="header-actions">
+          <button class="install-button is-hidden" id="install-button" type="button">Install</button>
+          <button class="icon-button" id="party-button" type="button" aria-label="Edit your family profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 20v-1.2a4.8 4.8 0 0 0-4.8-4.8H6.8A4.8 4.8 0 0 0 2 18.8V20M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm10.5 10v-1.2a4.8 4.8 0 0 0-3.6-4.64M15 2.14a4 4 0 0 1 0 7.72" /></svg>
+          </button>
+        </div>
+      </header>
+
+      <main id="app" tabindex="-1" aria-live="polite">
+        <section class="loading-state" aria-label="Loading your best next move">
+          <span class="live-dot"></span>
+          <p>Finding your best next move…</p>
+          <div class="skeleton skeleton-title"></div>
+          <div class="skeleton skeleton-card"></div>
+          <div class="skeleton skeleton-button"></div>
+        </section>
+      </main>
+
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button class="nav-item is-active" type="button" data-nav="now" aria-current="page">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10Z" /></svg><span>Now</span>
+        </button>
+        <button class="nav-item" type="button" data-nav="plan">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8m-8 0a2 2 0 0 0-2 2v15a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a2 2 0 0 0-2-2m-8 0v4h4V3M8 12h8M8 16h5" /></svg><span>Plan</span>
+        </button>
+        <button class="nav-item" type="button" data-nav="rides">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19h18M5 19V9m14 10V7M5 9c2-5 4 5 7 0s5 5 7-2M5 13c2-5 4 5 7 0s5 5 7-2" /></svg><span>Rides</span>
+        </button>
+        <button class="nav-item" type="button" data-nav="profile">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></svg><span>Family</span>
+        </button>
+      </nav>
+    </div>
+
+    <dialog class="sheet" id="party-sheet" aria-labelledby="party-sheet-title">
+      <form method="dialog" class="sheet-content" id="party-form">
+        <div class="sheet-handle"></div>
+        <div class="sheet-heading">
+          <div>
+            <p class="eyebrow">Your group</p>
+            <h2 id="party-sheet-title">Plan for your family</h2>
+          </div>
+          <button class="icon-button" type="button" data-close-sheet aria-label="Close family profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+          </button>
+        </div>
+        <p class="sheet-intro">Heights help NextRide choose rides your group can do together. Always confirm official ride rules at the attraction.</p>
+        <label class="field-label" for="adult-count">Adults</label>
+        <input class="number-input" id="adult-count" name="adults" type="number" min="1" max="8" inputmode="numeric" value="2" />
+        <label class="field-label" for="child-heights">Child heights in cm</label>
+        <input class="text-input" id="child-heights" name="childHeights" type="text" inputmode="numeric" autocomplete="off" placeholder="e.g. 118, 96" value="118, 96" />
+        <label class="toggle-row" for="parent-swap">
+          <span><strong>Use Parent Swap options</strong><small>Include eligible adult rides where the park supports swapping.</small></span>
+          <input id="parent-swap" name="parentSwap" type="checkbox" />
+        </label>
+        <div class="sheet-actions">
+          <button class="button secondary-button" id="reset-day" type="button">Reset today</button>
+          <button class="button primary-button" type="submit">Update plan</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="./app.js?v=5"></script>
+  </body>
+</html>
