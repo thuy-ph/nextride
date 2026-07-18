@@ -18,7 +18,10 @@ export function lookupMetadata(park, providerName) {
 
 export function enrichAttraction(park, item, locations = new Map()) {
   const metadata = lookupMetadata(park, item.name) ?? {};
-  const location = item.location ?? locations.get(item.id) ?? null;
+  const inlineLocation = Number.isFinite(item.latitude) && Number.isFinite(item.longitude)
+    ? { latitude: item.latitude, longitude: item.longitude }
+    : null;
+  const location = item.location ?? locations.get(item.id) ?? inlineLocation;
 
   return {
     id: item.id,

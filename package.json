@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node server.mjs",
     "start": "node server.mjs",
-    "test": "node test/optimizer.test.mjs"
+    "test": "node test/optimizer.test.mjs && node test/directions.test.mjs"
   },
   "engines": {
     "node": ">=17"

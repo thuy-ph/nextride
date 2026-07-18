@@ -26,7 +26,8 @@ The Pages build has no server-side API secret or shared cache. Before a commerci
 - Live queue/status fetch through `/api/parks/movieworld/live` locally, or the public feed directly on GitHub Pages.
 - Family-aware recommendation through `/api/recommendations` locally, or the same route engine in the static Pages build.
 - “Mark as done” records progress locally and recalculates the next ride.
-- “Show another”, “Need food”, and “Take a break” each re-rank the next move.
+- The recommended ride opens one-tap Google Maps walking directions when location data is available.
+- A distilled one-screen mobile interface with wait time, walking time and one primary action.
 - Installable PWA with offline shell caching.
 
 ## Integrating additional parks
